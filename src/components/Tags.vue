@@ -36,13 +36,46 @@ export default {
   data() {
     return {
       tags: [
-        { name: "Educação" },
-        { name: "Inclusão Digital" },
-        { name: "Acessibilidade" },
-        { name: "Sustentabilidade" },
-        { name: "Cidadania Digital" },
-        { name: "Empoderamento" },
-        { name: "Inovação Social" },
+        {
+          id: 1,
+          name: "Educação",
+        },
+        {
+          id: 2,
+          name: "Saúde",
+        },
+        {
+          id: 3,
+          name: "Inclusão Digital",
+        },
+        {
+          id: 4,
+          name: "Acessibilidade",
+        },
+        {
+          id: 5,
+          name: "Sustentabilidade",
+        },
+        {
+          id: 6,
+          name: "Empoderamento",
+        },
+        {
+          id: 7,
+          name: "Inovação Social",
+        },
+        {
+          id: 8,
+          name: "Comunidades Locais",
+        },
+        {
+          id: 9,
+          name: "Cidadania Digital",
+        },
+        {
+          id: 10,
+          name: "Empreendedorismo Social",
+        },
       ],
     };
   },

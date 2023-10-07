@@ -1,7 +1,7 @@
 <template>
   <div
     class="max-w-sm w-full lg:max-w-full hover:cursor-pointer"
-    onclick="viewProject()"
+    v-on:click="viewProject()"
   >
     <div
       class="hover:border-cyan-400 border-r border-b border-l border-gray-400 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal"
@@ -28,12 +28,13 @@
 <script>
 export default {
   props: {
+    id: Int16Array,
     name: String,
     description: String,
   },
   methods: {
     viewProject() {
-      this.$route.push("");
+      this.$router.push("/project/" + this.id);
     },
   },
 };
