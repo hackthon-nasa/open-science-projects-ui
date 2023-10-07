@@ -18,7 +18,7 @@
 
 <script>
 import Header from "@/components/shared/Header.vue";
-import FeedComponent from "@/components/FeedComponent.Vue";
+import FeedComponent from "@/components/FeedComponent.vue";
 import Tag from "@/components/Tags.Vue";
 
 export default {
