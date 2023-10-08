@@ -45,10 +45,15 @@
           {{ organization.name }}
           <!-- , <span class="font-light text-gray-500">27</span> -->
         </h1>
-        <p class="font-light text-gray-600 mt-3">Bucharest, Romania</p>
-        <p class="mt-8 text-gray-500" v-for="tag in organization.tags">
-          {{ tag }}
-        </p>
+        <p class="font-light text-gray-600 m-3">Bucharest, Romania</p>
+        <div class="flex flex-row justify-center">
+          <span
+            v-for="tag in organization.tags"
+            class="flex flex-wrap pl-4 pr-4 py-2 m-1 justify-between items-center text-sm font-medium rounded-xl cursor-pointer bg-purple-500 text-gray-200 hover:bg-purple-600 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+          >
+            {{ tag }}
+          </span>
+        </div>
       </div>
       <div class="mt-12 flex flex-col justify-center">
         <p class="text-gray-600 text-center font-light lg:px-16">
@@ -75,7 +80,7 @@
 <script>
 import Header from "../components/shared/Header.vue";
 import ProjectMiniCard from "../components/shared/ProjectMiniCard.vue";
-import organizations from "../mock/project.js";
+import organizations from "../mock/orgs.js";
 import projects from "../mock/project.js";
 
 export default {
