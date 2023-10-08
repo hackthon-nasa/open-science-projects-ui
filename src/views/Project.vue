@@ -35,9 +35,7 @@
           <h3
             class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2"
           >
-            <a href="organization/{{ project.organization_id }}">{{
-              project.name
-            }}</a>
+            <a v-on:click="toOrganization()">{{ project.name }}</a>
           </h3>
           <div
             class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase"
@@ -47,7 +45,7 @@
           </div>
           <div class="mb-2 text-blueGray-600 mt-10">
             <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i
-            >Solution Manager - Creative Tim Officer
+            >{{ project.organization.name }}
           </div>
           <div class="mb-2 text-blueGray-600">
             <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i
@@ -78,15 +76,21 @@
 
 <script>
 import Header from "../components/shared/Header.vue";
+import project from "../mock/project.js";
 import projects from "../mock/project.js";
 
 export default {
   components: { Header },
-  props: { id: Int16Array },
+  props: { id: String },
   data() {
     return {
       project: {},
     };
+  },
+  methods: {
+    toOrganization() {
+      this.$router.push("/organization/" + this.project.organization.id);
+    },
   },
   created() {
     this.project = projects.find((value) => value.id == this.id);
