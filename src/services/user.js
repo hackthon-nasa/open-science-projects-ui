@@ -6,8 +6,5 @@ export default{
     },
     getUserByEmail(email){
         return http.get('/users/' + email)
-    },
-    getUserById(name){
-        return http.get('/users/' + name)
-    },
+    }
 }
