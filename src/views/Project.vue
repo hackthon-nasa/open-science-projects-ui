@@ -79,6 +79,7 @@
 
 <script>
 import Header from "../components/shared/Header.vue";
+import ProjectService from "@/services/project";
 import project from "../mock/project.js";
 import projects from "../mock/project.js";
 

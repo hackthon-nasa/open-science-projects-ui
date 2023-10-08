@@ -2,7 +2,8 @@
   <Header></Header>
 
   <div class="p-16">
-    <div class="p-8 bg-white shadow mt-24">
+    <a href="/" class="mb-1 font-medium mt-4">&larr; Back</a>
+    <div class="p-8 bg-white shadow">
       <div class="grid grid-cols-1 md:grid-cols-3">
         <div
           class="grid grid-cols-3 text-center order-last md:order-first mt-20 md:mt-0"
@@ -67,6 +68,7 @@
           <ProjectMiniCard
             class="m-2"
             v-for="project in list_project"
+            :id="project.id"
             :name="project.name"
             :description="project.description"
             :collaborators="generateRandom()"
@@ -80,6 +82,7 @@
 <script>
 import Header from "../components/shared/Header.vue";
 import ProjectMiniCard from "../components/shared/ProjectMiniCard.vue";
+import OrganizationService from "@/services/organization";
 import organizations from "../mock/orgs.js";
 import projects from "../mock/project.js";
 

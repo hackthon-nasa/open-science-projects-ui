@@ -30,6 +30,7 @@
 
 <script>
 import ProjectCard from "./shared/ProjectCard.vue";
+import TagService from "@/services/tag";
 
 export default {
   components: { ProjectCard },
