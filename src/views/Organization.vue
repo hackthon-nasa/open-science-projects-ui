@@ -57,6 +57,16 @@
         <button class="text-indigo-500 py-2 px-4 font-medium mt-4">
           Show more
         </button>
+
+        <div class="flex" v-for="list_project in projects">
+          <ProjectMiniCard
+            class="m-2"
+            v-for="project in list_project"
+            :name="project.name"
+            :description="project.description"
+            :collaborators="generateRandom()"
+          ></ProjectMiniCard>
+        </div>
       </div>
     </div>
   </div>
@@ -64,10 +74,12 @@
 
 <script>
 import Header from "../components/shared/Header.vue";
+import ProjectMiniCard from "../components/shared/ProjectMiniCard.vue";
 import organizations from "../mock/project.js";
+import projects from "../mock/project.js";
 
 export default {
-  components: { Header },
+  components: { Header, ProjectMiniCard },
   props: { id: String },
   data() {
     return {
@@ -79,10 +91,27 @@ export default {
         description: "",
         tags: [],
       },
+      projects: [],
     };
+  },
+  methods: {
+    generateRandom() {
+      return parseInt(Math.random() * 20);
+    },
+    spliceIntoChunks(arr, chunkSize) {
+      return Array.from({ length: Math.ceil(arr.length / chunkSize) }, (v, i) =>
+        arr.slice(i * chunkSize, i * chunkSize + chunkSize)
+      );
+    },
   },
   created() {
     this.organization = organizations.find((value) => value.id == this.id);
+    this.projects = projects.filter(
+      (value) => value.organization.id == this.id
+    );
+
+    this.projects = this.spliceIntoChunks(this.projects, 5);
+    console.log(this.projects);
   },
 };
 </script>

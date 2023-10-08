@@ -98,5 +98,94 @@ export default [
       "name": "PrintTech Innovators"
     },
     "description": "Um projeto que cria modelos 3D de código aberto para impressoras 3D."
-  }
+  },{
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
+  {
+    "id": 0,
+    "name": "OpenAI Chatbot Framework",
+    "url": "https://github.com/hackthon-nasa/open-science-projects-ui",
+    "organization": {
+      "id": 1,
+      "name": "Tech Solutions Inc."
+    },
+    "description": "Um framework para desenvolver chatbots avançados usando IA."
+  },
 ]
