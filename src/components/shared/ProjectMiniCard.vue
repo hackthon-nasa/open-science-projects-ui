@@ -14,9 +14,11 @@
           </p>
           <div class="py-2 flex space-x-2">
             <button
+              v-on:click="toProject()"
               class="flex justify-center max-h-max whitespace-nowrap focus:outline-none focus:ring focus:border-blue-300 rounded max-w-max text-gray-100 bg-green-500 hover:bg-green-600 px-4 py-1 flex items-center hover:shadow-lg"
             >
-              View <span class="ml-2"></span>
+              View
+              <span class="ml-2"></span>
             </button>
           </div>
           <div
@@ -41,6 +43,7 @@
 <script>
 export default {
   props: {
+    id: String,
     name: String,
     description: String,
     collaborators: String,
@@ -49,6 +52,11 @@ export default {
     return {
       description_formatted: "",
     };
+  },
+  methods: {
+    toProject() {
+      this.$router.push("/project/" + this.id);
+    },
   },
   created() {
     this.description_formatted = this.description + this.description;

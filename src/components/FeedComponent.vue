@@ -12,7 +12,7 @@
 
 <script>
 import ProjectCard from "./shared/ProjectCard.vue";
-import project from "../mock/project.js";
+import project from "@/mock/project.js";
 
 export default {
   components: { ProjectCard },
