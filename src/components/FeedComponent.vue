@@ -20,19 +20,7 @@ export default {
   components: { ProjectCard },
   data() {
     return {
-      projects: [
-        {
-          id: 1,
-          name: "OpenAI Chatbot Framework",
-          url: "https://github.com/hackthon-nasa/open-science-projects-ui",
-          organization: {
-            id: 1,
-            name: "Tech Solutions Inc.",
-          },
-          description:
-            "Um framework para desenvolver chatbots avançados usando IA.",
-        },
-      ],
+      projects: [],
     };
   },
   created() {
@@ -43,12 +31,12 @@ export default {
           tagIds.push(t.id);
         });
         ServiceProject.getListFiltered(tagIds).then((response) => {
-          this.projects = response.data.projects.slice(1, 10);
+          this.projects = response.data.projects.slice(1, 100);
         });
       });
     } else {
       ServiceProject.getListFiltered([]).then((response) => {
-        this.projects = response.data.projects.slice(1, 10);
+        this.projects = response.data.projects.slice(1, 100);
       });
     }
   },

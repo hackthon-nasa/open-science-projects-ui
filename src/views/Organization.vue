@@ -46,7 +46,7 @@
           {{ organization.name }}
           <!-- , <span class="font-light text-gray-500">27</span> -->
         </h1>
-        <p class="font-light text-gray-600 m-3">Bucharest, Romania</p>
+        <p class="font-light text-gray-600 m-3">{{ organization.location }}</p>
         <div class="flex flex-row justify-center" v-if="tags">
           <span
             v-for="tag in tags"
@@ -119,12 +119,6 @@ export default {
       this.projects = this.spliceIntoChunks(response.data, 5);
       console.log(this.projects);
     });
-    OrganizationService.getOrganizationListTagsById(this.id).then(
-      (response) => {
-        this.tags = response.data;
-        console.log(this.tags);
-      }
-    );
   },
 };
 </script>
