@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const http = axios.create({
-    baseURL: 'http://localhost:6001/api',
+    baseURL: 'http://nasa-hackathon-os-cervejeiros.somee.com/api/',
     headers: {
         'Authorization': {
             toString() {

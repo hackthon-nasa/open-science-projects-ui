@@ -50,12 +50,12 @@
               >{{ organization.name }}</a
             >
           </div>
-          <div class="flex flex-row justify-center" v-if="tags">
+          <div class="flex flex-row justify-center">
             <span
-              v-for="tag in tags"
+              v-for="tag in project.tag_ids"
               class="flex flex-wrap pl-4 pr-4 py-2 m-1 justify-between items-center text-sm font-medium rounded-xl cursor-pointer bg-purple-500 text-gray-200 hover:bg-purple-600 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-100"
             >
-              {{ tag.description }}
+              {{ tag }}
             </span>
           </div>
           <div class="mb-2 text-blueGray-600">
@@ -123,6 +123,5 @@ export default {
       this.tags = response.data;
     });
   },
-  beforeCreated() {},
 };
 </script>
