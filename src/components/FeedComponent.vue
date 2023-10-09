@@ -3,7 +3,7 @@
     <div v-for="project in projects">
       <ProjectCard
         :id="project.id"
-        :name="project.name"
+        :name="project.title"
         :description="project.description"
       ></ProjectCard>
     </div>
@@ -12,9 +12,11 @@
 
 <script>
 import ProjectCard from "./shared/ProjectCard.vue";
-import project from "@/mock/project.js";
+import ServiceProject from "@/services/project.js";
+import TagService from "@/services/tag";
 
 export default {
+  props: { id: String },
   components: { ProjectCard },
   data() {
     return {
@@ -22,8 +24,21 @@ export default {
     };
   },
   created() {
-    this.projects = project;
-    console.log(project);
+    if (this.id != null) {
+      TagService.getTagsByUserId(this.id).then((response) => {
+        let tagIds = [];
+        response.data.tags.forEach((t) => {
+          tagIds.push(t.id);
+        });
+        ServiceProject.getListFiltered(tagIds).then((response) => {
+          this.projects = response.data.projects.slice(1, 100);
+        });
+      });
+    } else {
+      ServiceProject.getListFiltered([]).then((response) => {
+        this.projects = response.data.projects.slice(1, 100);
+      });
+    }
   },
 };
 </script>

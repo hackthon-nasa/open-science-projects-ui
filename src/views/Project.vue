@@ -25,7 +25,7 @@
               <div class="mr-4 p-3 text-center">
                 <span
                   class="text-xl font-bold block uppercase tracking-wide text-blueGray-600"
-                  >22</span
+                  >0</span
                 ><span class="text-sm text-blueGray-400">Collaborators</span>
               </div>
             </div>
@@ -35,7 +35,7 @@
           <h3
             class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2"
           >
-            <a>{{ project.name }}</a>
+            <a>{{ project.title }}</a>
           </h3>
           <div
             class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase"
@@ -47,8 +47,16 @@
             <a
               v-on:click="toOrganization()"
               class="fas fa-briefcase mr-2 text-lg text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
-              >{{ project.organization.name }}</a
+              >{{ organization.name }}</a
             >
+          </div>
+          <div class="flex flex-row justify-center" v-if="tags">
+            <span
+              v-for="tag in tags"
+              class="flex flex-wrap pl-4 pr-4 py-2 m-1 justify-between items-center text-sm font-medium rounded-xl cursor-pointer bg-purple-500 text-gray-200 hover:bg-purple-600 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+            >
+              {{ tag.description }}
+            </span>
           </div>
           <div class="mb-2 text-blueGray-600">
             <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i
@@ -58,7 +66,8 @@
             <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>
             <a
               class="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
-              href="{{ project.url }}"
+              :href="project.link"
+              target="_blank"
               >Project Link</a
             >
           </div>
@@ -80,8 +89,7 @@
 <script>
 import Header from "../components/shared/Header.vue";
 import ProjectService from "@/services/project";
-import project from "../mock/project.js";
-import projects from "../mock/project.js";
+import OrganizationService from "@/services/organization";
 
 export default {
   components: { Header },
@@ -89,15 +97,32 @@ export default {
   data() {
     return {
       project: {},
+      organization: {},
+      tags: [],
     };
   },
   methods: {
     toOrganization() {
-      this.$router.push("/organization/" + this.project.organization.id);
+      this.$router.push("/organization/" + this.project.organization_id);
     },
   },
   created() {
-    this.project = projects.find((value) => value.id == this.id);
+    ProjectService.getById(this.id)
+      .then((response) => {
+        this.project = response.data;
+      })
+      .finally((r) => {
+        OrganizationService.getById(this.project.organization_id).then(
+          (response) => {
+            this.organization = response.data;
+          }
+        );
+      });
+
+    ProjectService.getTagsByProjectId(this.id).then((response) => {
+      this.tags = response.data;
+    });
   },
+  beforeCreated() {},
 };
 </script>

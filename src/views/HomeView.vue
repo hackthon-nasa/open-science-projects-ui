@@ -1,17 +1,24 @@
 <template>
   <Header></Header>
   <hr />
-  <div className="flex flex-row justify-normal w-full p-5 justify-center">
+
+  <template v-if="id">
+    <div class="flex text-center pt-2 text-red-600 justify-center">
+      Filtered by profile tags
+    </div>
+  </template>
+
+  <div className="flex flex-row justify-normal w-full p-5 pt-0 justify-center">
     <!-- <div class="text-start w-full">
       <h1 class="font-bold text-lg text-start">{{ user.name }}</h1>
     </div> -->
 
     <div class="p-5">
-      <FeedComponent></FeedComponent>
+      <FeedComponent :id="id"></FeedComponent>
     </div>
 
     <div class="p-5">
-      <Tag></Tag>
+      <Tag :id="id"></Tag>
     </div>
   </div>
 </template>
@@ -25,24 +32,12 @@ export default {
   components: { Header, FeedComponent, Tag },
   data() {
     return {
-      user: {
-        name: "Gustavo Voltoini",
-      },
+      id: null,
     };
   },
-  methods: {
-    loginUser() {
-      this.loading = true;
-      User.login(this.user)
-        .then((response) => {
-          localStorage.setItem("token", response.data.access_token);
-          this.$router.push("/");
-        })
-        .catch(() => {
-          this.generateMessage("Incorrect credentials!", "alert alert-danger");
-        })
-        .finally(() => (this.loading = false));
-    },
+  created() {
+    this.id = localStorage.getItem("id");
   },
+  methods: {},
 };
 </script>
