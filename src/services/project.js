@@ -9,7 +9,7 @@ export default{
         return http.get('/projects/organization/' + organizationId);
     },
     getTagsByProjectId(projectId){
-        return http.get('projects/tags/' + projectId)
+        return http.get('/tags/' + projectId)
     },
     getById(id){
         return http.get('/projects/' + id);
