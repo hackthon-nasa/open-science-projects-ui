@@ -19,7 +19,7 @@
             <label
               for="vue-checkbox"
               class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-              >{{ tag.name }}</label
+              >{{ tag.description }}</label
             >
           </div>
         </li>
@@ -33,52 +33,19 @@ import ProjectCard from "./shared/ProjectCard.vue";
 import TagService from "@/services/tag";
 
 export default {
+  props: { id: String },
   components: { ProjectCard },
   data() {
     return {
-      tags: [
-        {
-          id: 1,
-          name: "Educação",
-        },
-        {
-          id: 2,
-          name: "Saúde",
-        },
-        {
-          id: 3,
-          name: "Inclusão Digital",
-        },
-        {
-          id: 4,
-          name: "Acessibilidade",
-        },
-        {
-          id: 5,
-          name: "Sustentabilidade",
-        },
-        {
-          id: 6,
-          name: "Empoderamento",
-        },
-        {
-          id: 7,
-          name: "Inovação Social",
-        },
-        {
-          id: 8,
-          name: "Comunidades Locais",
-        },
-        {
-          id: 9,
-          name: "Cidadania Digital",
-        },
-        {
-          id: 10,
-          name: "Empreendedorismo Social",
-        },
-      ],
+      tags: [],
     };
+  },
+  created() {
+    if (this.id != null) {
+      TagService.getTagsByUserId(this.id).then((response) => {
+        this.tags = response.data.tags;
+      });
+    }
   },
 };
 </script>

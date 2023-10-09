@@ -12,7 +12,7 @@
           {{ name }}
         </div>
         <p class="text-gray-700 text-base">
-          {{ description }}
+          {{ description_formatted }}
         </p>
       </div>
       <div class="flex items-center">
@@ -28,13 +28,25 @@
 <script>
 export default {
   props: {
-    id: Int16Array,
+    id: Number,
     name: String,
     description: String,
+  },
+  data() {
+    return {
+      description_formatted: "",
+    };
   },
   methods: {
     viewProject() {
       this.$router.push("/project/" + this.id);
+    },
+    created() {
+      this.description_formatted = this.description + this.description;
+      if (this.description.length > 30) {
+        let new_description = this.description.substr(0, 30);
+        this.description_formatted = new_description + "...";
+      }
     },
   },
 };

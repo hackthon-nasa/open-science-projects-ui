@@ -7,11 +7,11 @@
     </div> -->
 
     <div class="p-5">
-      <FeedComponent></FeedComponent>
+      <FeedComponent :id="id"></FeedComponent>
     </div>
 
     <div class="p-5">
-      <Tag></Tag>
+      <Tag :id="id"></Tag>
     </div>
   </div>
 </template>
@@ -20,29 +20,18 @@
 import Header from "@/components/shared/Header.vue";
 import FeedComponent from "@/components/FeedComponent.vue";
 import Tag from "@/components/Tags.vue";
+import TagService from "@/services/tag";
 
 export default {
   components: { Header, FeedComponent, Tag },
   data() {
     return {
-      user: {
-        name: "Gustavo Voltoini",
-      },
+      id: null,
     };
   },
-  methods: {
-    loginUser() {
-      this.loading = true;
-      User.login(this.user)
-        .then((response) => {
-          localStorage.setItem("token", response.data.access_token);
-          this.$router.push("/");
-        })
-        .catch(() => {
-          this.generateMessage("Incorrect credentials!", "alert alert-danger");
-        })
-        .finally(() => (this.loading = false));
-    },
+  created() {
+    this.id = localStorage.getItem("id");
   },
+  methods: {},
 };
 </script>

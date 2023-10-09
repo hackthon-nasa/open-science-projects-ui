@@ -35,7 +35,7 @@
           <h3
             class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2"
           >
-            <a>{{ project.name }}</a>
+            <a>{{ project.title }}</a>
           </h3>
           <div
             class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase"
@@ -47,7 +47,7 @@
             <a
               v-on:click="toOrganization()"
               class="fas fa-briefcase mr-2 text-lg text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
-              >{{ project.organization.name }}</a
+              >{{ organization.name }}</a
             >
           </div>
           <div class="mb-2 text-blueGray-600">
@@ -58,7 +58,8 @@
             <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>
             <a
               class="font-medium text-blue-600 dark:text-blue-500 hover:underline hover:cursor-pointer"
-              href="{{ project.url }}"
+              :href="project.link"
+              target="_blank"
               >Project Link</a
             >
           </div>
@@ -80,8 +81,7 @@
 <script>
 import Header from "../components/shared/Header.vue";
 import ProjectService from "@/services/project";
-import project from "../mock/project.js";
-import projects from "../mock/project.js";
+import OrganizationService from "@/services/organization";
 
 export default {
   components: { Header },
@@ -89,15 +89,27 @@ export default {
   data() {
     return {
       project: {},
+      organization: {},
     };
   },
   methods: {
     toOrganization() {
-      this.$router.push("/organization/" + this.project.organization.id);
+      this.$router.push("/organization/" + this.project.organization_id);
     },
   },
   created() {
-    this.project = projects.find((value) => value.id == this.id);
+    ProjectService.getById(this.id)
+      .then((response) => {
+        this.project = response.data;
+      })
+      .finally((r) => {
+        OrganizationService.getById(this.project.organization_id).then(
+          (response) => {
+            this.organization = response.data;
+          }
+        );
+      });
   },
+  beforeCreated() {},
 };
 </script>

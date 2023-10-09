@@ -47,12 +47,12 @@
           <!-- , <span class="font-light text-gray-500">27</span> -->
         </h1>
         <p class="font-light text-gray-600 m-3">Bucharest, Romania</p>
-        <div class="flex flex-row justify-center">
+        <div class="flex flex-row justify-center" v-if="tags">
           <span
-            v-for="tag in organization.tags"
+            v-for="tag in tags"
             class="flex flex-wrap pl-4 pr-4 py-2 m-1 justify-between items-center text-sm font-medium rounded-xl cursor-pointer bg-purple-500 text-gray-200 hover:bg-purple-600 hover:text-gray-100 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-800 dark:hover:text-gray-100"
           >
-            {{ tag }}
+            {{ tag.description }}
           </span>
         </div>
       </div>
@@ -69,7 +69,7 @@
             class="m-2"
             v-for="project in list_project"
             :id="project.id"
-            :name="project.name"
+            :name="project.title"
             :description="project.description"
             :collaborators="generateRandom()"
           ></ProjectMiniCard>
@@ -83,8 +83,7 @@
 import Header from "../components/shared/Header.vue";
 import ProjectMiniCard from "../components/shared/ProjectMiniCard.vue";
 import OrganizationService from "@/services/organization";
-import organizations from "../mock/orgs.js";
-import projects from "../mock/project.js";
+import ProjectService from "@/services/project";
 
 export default {
   components: { Header, ProjectMiniCard },
@@ -113,13 +112,19 @@ export default {
     },
   },
   created() {
-    this.organization = organizations.find((value) => value.id == this.id);
-    this.projects = projects.filter(
-      (value) => value.organization.id == this.id
+    OrganizationService.getById(this.id).then((response) => {
+      this.organization = response.data;
+    });
+    ProjectService.getProjectByOrganizationId(this.id).then((response) => {
+      this.projects = this.spliceIntoChunks(response.data, 5);
+      console.log(this.projects);
+    });
+    OrganizationService.getOrganizationListTagsById(this.id).then(
+      (response) => {
+        this.tags = response.data;
+        console.log(this.tags);
+      }
     );
-
-    this.projects = this.spliceIntoChunks(this.projects, 5);
-    console.log(this.projects);
   },
 };
 </script>

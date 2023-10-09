@@ -122,8 +122,8 @@ export default {
         .finally(() => (this.loading = false));
     },
     fakeLogin() {
-      let user = UserService.getUserById(1);
-      localStorage.setItem("id", 1);
+      let user = UserService.getUserById(2);
+      localStorage.setItem("id", 2);
       localStorage.getItem("name", user.name);
       this.$router.push("/");
     },
